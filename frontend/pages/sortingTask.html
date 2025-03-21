@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Sorting Items</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/css/style.css">
+    </head>
+    <body>
+        <div id="task-section">
+            <h2>Drag the item to the correct bin</h2>
+            <div id="stimulus-container">
+                <img id="stimulus" class="drag-item" src="" alt="Stimulus" draggable="true" 
+         ondragstart="startDrag(event)" ondragend="stopTimer(event)">
+            </div>
+            <div class="bin-container">
+                <div id="yellow-bin" class="bin" ondrop="dropItem(event, 'yellow')" ondragover="allowDrop(event)">
+                    <img src="/assets/bins/yellow_bin.png" alt="Yellow Recycling Bin" width="200" draggable="false">
+                </div>
+                <div id="red-bin" class="bin" ondrop="dropItem(event, 'red')" ondragover="allowDrop(event)">
+                    <img src="/assets/bins/red_bin.png" alt="Red General Waste Bin" width="200" draggable="false">
+                </div>
+            </div>
+
+            <!-- <button onclick="loadNextStimulus()">Next</button> -->
+        </div>
+        
+        <script src="/js/scripter.js"> </script>
+    </body>
+</html>

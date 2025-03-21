@@ -1,0 +1,19 @@
+{
+  "name": "recycling_thesis",
+  "version": "1.0.0",
+  "description": "This is a project about Visual preception on Recycling",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "csv-parser": "^3.2.0",
+    "express": "^4.21.2",
+    "fast-csv": "^5.0.2",
+    "open": "^10.1.0"
+  }
+}
