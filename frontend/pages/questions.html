@@ -8,7 +8,7 @@
         <!-- Author: FormBold Team -->
         <!-- Learn More: https://formbold.com -->
         <div class="formbold-form-wrapper">
-          <img src="your-image-url-here.jpg">
+          <img  class="responsive-image" src="../assets/theme/recycling_theme.webp">
           <form action="https://formbold.com/s/FORM_ID" method="POST">
             <div class="formbold-input-group">
               <label for="name" class="formbold-form-label"> Name </label>
@@ -20,17 +20,45 @@
                 class="formbold-form-input"
               />
             </div>
-      
-            <div class="formbold-input-group">
-              <label for="email" class="formbold-form-label"> Email </label>
-              <input
-                type="email"
-                name="lastname"
-                id="email"
-                placeholder="Enter your email"
-                class="formbold-form-input"
-              />
+            
+            <!-- Gender Identity -->
+            <div class="formbold-input-radio-wrapper">
+              <label class="formbold-form-label">What gender do you identify as?</label>
+              <div class="formbold-radio-flex">
+                <div class="formbold-radio-group">
+                  <label class="formbold-radio-label" for="gender-male">
+                    <input class="formbold-input-radio" type="radio" name="gender" id="gender-male" value="Male" />
+                    Male
+                    <span class="formbold-radio-checkmark"></span>
+                  </label>
+                </div>
+
+                <div class="formbold-radio-group">
+                  <label class="formbold-radio-label" for="gender-female">
+                    <input class="formbold-input-radio" type="radio" name="gender" id="gender-female" value="Female" />
+                    Female
+                    <span class="formbold-radio-checkmark"></span>
+                  </label>
+                </div>
+
+                <div class="formbold-radio-group">
+                  <label class="formbold-radio-label" for="gender-other">
+                    <input class="formbold-input-radio" type="radio" name="gender" id="gender-other" value="Other" />
+                    Other
+                    <span class="formbold-radio-checkmark"></span>
+                  </label>
+                </div>
+
+                <div class="formbold-radio-group">
+                  <label class="formbold-radio-label" for="gender-furry">
+                    <input class="formbold-input-radio" type="radio" name="gender" id="gender-furry" value="Furry" />
+                    Furry
+                    <span class="formbold-radio-checkmark"></span>
+                  </label>
+                </div>
+              </div>
             </div>
+
       
             <div class="formbold-input-group">
               <label for="age" class="formbold-form-label"> Age </label>
@@ -43,22 +71,123 @@
               />
             </div>
       
-            <div class="formbold-input-group">
+            <!-- Housing Type -->
+            <div class="formbold-input-radio-wrapper">
+              <label class="formbold-form-label">What type of housing do you live in?</label>
+              <div class="formbold-radio-flex">
+                <div class="formbold-radio-group">
+                  <label class="formbold-radio-label" for="housing-apartment">
+                    <input class="formbold-input-radio" type="radio" name="housing" id="housing-apartment" value="Apartment" />
+                    Apartment/unit
+                    <span class="formbold-radio-checkmark"></span>
+                  </label>
+                </div>
+            
+                <div class="formbold-radio-group">
+                  <label class="formbold-radio-label" for="housing-townhouse">
+                    <input class="formbold-input-radio" type="radio" name="housing" id="housing-townhouse" value="Townhouse" />
+                    Townhouse
+                    <span class="formbold-radio-checkmark"></span>
+                  </label>
+                </div>
+            
+                <div class="formbold-radio-group">
+                  <label class="formbold-radio-label" for="housing-detached">
+                    <input class="formbold-input-radio" type="radio" name="housing" id="housing-detached" value="Detached" />
+                    Detached house
+                    <span class="formbold-radio-checkmark"></span>
+                  </label>
+                </div>
+            
+                <div class="formbold-radio-group">
+                  <label class="formbold-radio-label" for="housing-other">
+                    <input class="formbold-input-radio" type="radio" name="housing" id="housing-other" value="Other" />
+                    Other (please specify)
+                    <span class="formbold-radio-checkmark"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bin Access (Checkboxes) -->
+            <div class="formbold-input-radio-wrapper">
+              <label class="formbold-form-label">Do you have access to separate bins for the following at home? (Select all that apply)</label>
+              <div class="formbold-radio-flex">
+                <div class="formbold-radio-group">
+                  <label class="formbold-radio-label" for="bin-general">
+                    <input type="checkbox" name="bins" id="bin-general" value="General waste" />
+                    General waste
+                  </label>
+                </div>
+            
+                <div class="formbold-radio-group">
+                  <label class="formbold-radio-label" for="bin-mixed">
+                    <input type="checkbox" name="bins" id="bin-mixed" value="Mixed recycling" />
+                    Mixed recycling (glass, plastic, paper)
+                  </label>
+                </div>
+            
+                <div class="formbold-radio-group">
+                  <label class="formbold-radio-label" for="bin-paper">
+                    <input type="checkbox" name="bins" id="bin-paper" value="Paper & cardboard" />
+                    Paper & cardboard
+                  </label>
+                </div>
+            
+                <div class="formbold-radio-group">
+                  <label class="formbold-radio-label" for="bin-fogo">
+                    <input type="checkbox" name="bins" id="bin-fogo" value="FOGO" />
+                    Food & garden organics (FOGO)
+                  </label>
+                </div>
+            
+                <div class="formbold-radio-group">
+                  <label class="formbold-radio-label" for="bin-glass">
+                    <input type="checkbox" name="bins" id="bin-glass" value="Glass" />
+                    Glass
+                  </label>
+                </div>
+            
+                <div class="formbold-radio-group">
+                  <label class="formbold-radio-label" for="bin-ewaste">
+                    <input type="checkbox" name="bins" id="bin-ewaste" value="E-waste" />
+                    E-waste
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="formbold-input-group">
               <label class="formbold-form-label">
-                Which option best describes you?
+                What type of housing do you live in?
               </label>
       
               <select class="formbold-form-select" name="occupation" id="occupation">
-                <option value="Student">Student</option>
-                <option value="designer">UX/UI Designer</option>
-                <option value="fullstack">Full Stack Developer</option>
-                <option value="frontend">Front End Developer</option>
+                <option value="Apartment/unit">Apartment/unit</option>
+                <option value="Townhouse">Townhouse</option>
+                <option value="DetachedHouse">Detached House</option>
+                <option value="Other">Other (please specify)</option>
               </select>
-            </div>
+            </div> -->
+            
+            <!-- <div class="formbold-input-group">
+              <label class="formbold-form-label">
+                Do you have access to separate bins for the following at home? (Select all that apply)
+              </label>
       
-            <div class="formbold-input-radio-wrapper">
+              <select class="formbold-form-select" name="occupation" id="occupation">
+                <option value="GeneralWaste">General waste</option>
+                <option value="MixedRecycling">Mixed recycling (glass, plastic, paper)</option>
+                <option value="paper&cardboard">Paper & cardboard</option>
+                <option value="FOGO">Food & garden organics (FOGO)</option>
+                <option value="Glass">Glass</option>
+                <option value="E-Waste">E-waste</option>
+              </select>
+            </div> -->
+            
+            <!-- <div class="formbold-input-radio-wrapper">
               <label for="ans" class="formbold-form-label">
-                Would you recomend our site to a friend?
+                Do you have access to separate bins for the following at home? (Select all that apply)
               </label>
       
               <div class="formbold-radio-flex">
@@ -101,145 +230,181 @@
                   </label>
                 </div>
               </div>
-            </div>
-      
-            <div class="formbold-input-radio-wrapper">
-              <label class="formbold-form-label">
-                Which languages & freameworks you know?
+            </div> -->
+            
+            
+            <div class="formbold-input-group">
+              <label for="recycling-knowledge" class="formbold-form-label">On a scale of 1-5, how would you rate your recycling knowledge? <br> (1 = Not at all knowledgeable, 5 = Very knowledgeable)
               </label>
-      
+              <input
+                type="number"
+                name="recycling-knowledge"
+                id="recycling-knowledge"
+                placeholder="Enter your knowledge"
+                class="formbold-form-input"
+                min="1" 
+                max="5"
+              />
+            </div>
+
+            <div class="formbold-input-group">
+              <label for="recycle_home" class="formbold-form-label">How often do you recycle at home?<br>(1 = Never, 5 = Always)
+              </label>
+              <input
+                type="number"
+                name="recycling-knowledge"
+                id="recycling-knowledge"
+                placeholder="Enter your knowledge"
+                class="formbold-form-input"
+                min="1" 
+                max="5"
+              />
+            </div>
+
+            <div class="formbold-input-radio-wrapper">
+              <label class="formbold-form-label">7. Which of the following actions do you take when recycling at home? (Select all that apply)</label>
               <div class="formbold-radio-flex">
                 <div class="formbold-radio-group">
-                  <label class="formbold-radio-label" for="c">
-                    <input
-                      class="formbold-input-radio"
-                      type="radio"
-                      name="c"
-                      id="c"
-                    />
-                    C
+                  <label class="formbold-radio-label" for="q7-a">
+                    <input type="checkbox" id="q7-a" name="q7[]" value="Check recycling label" class="formbold-input-radio" />
+                    Check the recycling label
                     <span class="formbold-radio-checkmark"></span>
                   </label>
                 </div>
-      
                 <div class="formbold-radio-group">
-                  <label class="formbold-radio-label" for="c++">
-                    <input
-                      class="formbold-input-radio"
-                      type="radio"
-                      name="c++"
-                      id="c++"
-                    />
-                    c++
+                  <label class="formbold-radio-label" for="q7-b">
+                    <input type="checkbox" id="q7-b" name="q7[]" value="Rinse containers" class="formbold-input-radio" />
+                    Rinse or clean containers
                     <span class="formbold-radio-checkmark"></span>
                   </label>
                 </div>
-      
                 <div class="formbold-radio-group">
-                  <label class="formbold-radio-label" for="java">
-                    <input
-                      class="formbold-input-radio"
-                      type="radio"
-                      name="java"
-                      id="java"
-                    />
-                    Java
+                  <label class="formbold-radio-label" for="q7-c">
+                    <input type="checkbox" id="q7-c" name="q7[]" value="Remove lids" class="formbold-input-radio" />
+                    Remove lids from bottles
                     <span class="formbold-radio-checkmark"></span>
                   </label>
                 </div>
-      
                 <div class="formbold-radio-group">
-                  <label class="formbold-radio-label" for="python">
-                    <input
-                      class="formbold-input-radio"
-                      type="radio"
-                      name="python"
-                      id="python"
-                    />
-                    Python
+                  <label class="formbold-radio-label" for="q7-d">
+                    <input type="checkbox" id="q7-d" name="q7[]" value="Separate soft and hard plastics" class="formbold-input-radio" />
+                    Separate soft & hard plastics
                     <span class="formbold-radio-checkmark"></span>
                   </label>
                 </div>
-      
                 <div class="formbold-radio-group">
-                  <label class="formbold-radio-label" for="javaScript">
-                    <input
-                      class="formbold-input-radio"
-                      type="radio"
-                      name="javaScript"
-                      id="javaScript"
-                    />
-                    JavaScript
-                    <span class="formbold-radio-checkmark"></span>
-                  </label>
-                </div>
-      
-                <div class="formbold-radio-group">
-                  <label class="formbold-radio-label" for="react">
-                    <input
-                      class="formbold-input-radio"
-                      type="radio"
-                      name="react"
-                      id="react"
-                    />
-                    React
-                    <span class="formbold-radio-checkmark"></span>
-                  </label>
-                </div>
-      
-                <div class="formbold-radio-group">
-                  <label class="formbold-radio-label" for="angular">
-                    <input
-                      class="formbold-input-radio"
-                      type="radio"
-                      name="angular"
-                      id="angular"
-                    />
-                    Angular
-                    <span class="formbold-radio-checkmark"></span>
-                  </label>
-                </div>
-      
-                <div class="formbold-radio-group">
-                  <label class="formbold-radio-label" for="django">
-                    <input
-                      class="formbold-input-radio"
-                      type="radio"
-                      name="django"
-                      id="django"
-                    />
-                    Django
-                    <span class="formbold-radio-checkmark"></span>
-                  </label>
-                </div>
-      
-                <div class="formbold-radio-group">
-                  <label class="formbold-radio-label" for="tailwind">
-                    <input
-                      class="formbold-input-radio"
-                      type="radio"
-                      name="tailwind"
-                      id="tailwind"
-                    />
-                    Tailwind CSS
-                    <span class="formbold-radio-checkmark"></span>
-                  </label>
-                </div>
-      
-                <div class="formbold-radio-group">
-                  <label class="formbold-radio-label" for="bootstrap">
-                    <input
-                      class="formbold-input-radio"
-                      type="radio"
-                      name="bootstrap"
-                      id="bootstrap"
-                    />
-                    Bootstrap
+                  <label class="formbold-radio-label" for="q7-e">
+                    <input type="checkbox" id="q7-e" name="q7[]" value="Separate materials from product" class="formbold-input-radio" />
+                    Separate different materials
                     <span class="formbold-radio-checkmark"></span>
                   </label>
                 </div>
               </div>
             </div>
+
+            <div class="formbold-input-radio-wrapper">
+              <label class="formbold-form-label">8. How confident are you in segregating what is recyclable in your home? (1-5 scale)</label>
+            
+              <label for="plasticConfidence">Plastic items</label>
+              <input type="range" id="plasticConfidence" name="confidence[plastic]" min="1" max="5" /><br>
+            
+              <label for="glassConfidence">Glass items</label>
+              <input type="range" id="glassConfidence" name="confidence[glass]" min="1" max="5" /><br>
+            
+              <label for="metalConfidence">Metal items</label>
+              <input type="range" id="metalConfidence" name="confidence[metal]" min="1" max="5" /><br>
+            
+              <label for="softPlasticConfidence">Soft plastics</label>
+              <input type="range" id="softPlasticConfidence" name="confidence[soft_plastic]" min="1" max="5" /><br>
+            
+              <label for="eWasteConfidence">Batteries and e-waste</label>
+              <input type="range" id="eWasteConfidence" name="confidence[e_waste]" min="1" max="5" />
+            </div>
+            
+            <div class="formbold-input-radio-wrapper">
+              <label class="formbold-form-label">11. What are your biggest concerns regarding recycling in Brisbane? (Select all that apply)</label>
+              <div class="formbold-radio-flex">
+                <div class="formbold-radio-group">
+                  <label class="formbold-radio-label">
+                    <input type="checkbox" name="q11[]" value="Lack of infrastructure" class="formbold-input-radio" />
+                    Lack of recycling infrastructure
+                    <span class="formbold-radio-checkmark"></span>
+                  </label>
+                </div>
+            
+                <div class="formbold-radio-group">
+                  <label class="formbold-radio-label">
+                    <input type="checkbox" name="q11[]" value="Misunderstanding rules" class="formbold-input-radio" />
+                    Misunderstanding of recycling rules
+                    <span class="formbold-radio-checkmark"></span>
+                  </label>
+                </div>
+            
+                <div class="formbold-radio-group">
+                  <label class="formbold-radio-label">
+                    <input type="checkbox" name="q11[]" value="Lack of trust" class="formbold-input-radio" />
+                    Lack of trust in recycling process
+                    <span class="formbold-radio-checkmark"></span>
+                  </label>
+                </div>
+            
+                <div class="formbold-radio-group">
+                  <label class="formbold-radio-label">
+                    <input type="checkbox" name="q11[]" value="Inconvenient drop-offs" class="formbold-input-radio" />
+                    Inconvenience of accessing drop-off locations
+                    <span class="formbold-radio-checkmark"></span>
+                  </label>
+                </div>
+            
+                <div class="formbold-radio-group">
+                  <label class="formbold-radio-label">
+                    <input type="checkbox" name="q11[]" value="Limited bin space" class="formbold-input-radio" />
+                    Limited space in household bins
+                    <span class="formbold-radio-checkmark"></span>
+                  </label>
+                </div>
+            
+                <div class="formbold-radio-group">
+                  <label class="formbold-radio-label">
+                    <input type="checkbox" name="q11[]" value="Other" class="formbold-input-radio" />
+                    Other
+                    <span class="formbold-radio-checkmark"></span>
+                  </label>
+                  <input type="text" name="q11_other" placeholder="Please specify" />
+                </div>
+              </div>
+            </div>
+            
+            <div class="formbold-input-radio-wrapper">
+              <label class="formbold-form-label">12. Do you trust that items placed in your recycling bin are recycled?<br>( 1 – 100 scale)</label>
+              <input type="number" id="q12" name="trustScale" min="1" max="100" step="1" />
+            </div>
+            
+            <div class="formbold-input-radio-wrapper">
+              <label class="formbold-form-label">16. Which of the following would make you recycle more? (Select all that apply)</label>
+              <div class="formbold-radio-flex">
+                <div class="formbold-radio-group"><label class="formbold-radio-label"><input type="checkbox" name="q16[]" value="Better access" class="formbold-input-radio" /> Better access to bins <span class="formbold-radio-checkmark"></span></label></div>
+                <div class="formbold-radio-group"><label class="formbold-radio-label"><input type="checkbox" name="q16[]" value="Larger bins" class="formbold-input-radio" /> Larger recycling bins <span class="formbold-radio-checkmark"></span></label></div>
+                <div class="formbold-radio-group"><label class="formbold-radio-label"><input type="checkbox" name="q16[]" value="Clearer info" class="formbold-input-radio" /> Clearer labels/info <span class="formbold-radio-checkmark"></span></label></div>
+                <div class="formbold-radio-group"><label class="formbold-radio-label"><input type="checkbox" name="q16[]" value="Incentives" class="formbold-input-radio" /> Incentives or rewards <span class="formbold-radio-checkmark"></span></label></div>
+                <div class="formbold-radio-group"><label class="formbold-radio-label"><input type="checkbox" name="q16[]" value="Transparency" class="formbold-input-radio" /> More transparency <span class="formbold-radio-checkmark"></span></label></div>
+                <div class="formbold-radio-group"><label class="formbold-radio-label"><input type="checkbox" name="q16[]" value="None" class="formbold-input-radio" /> None of the above <span class="formbold-radio-checkmark"></span></label></div>
+              </div>
+            </div>
+            
+            <div class="formbold-input-radio-wrapper">
+              <label class="formbold-form-label">18. Do you currently engage in any of the following sustainable practices? (Select all that apply)</label>
+              <div class="formbold-radio-flex">
+                <div class="formbold-radio-group"><label class="formbold-radio-label"><input type="checkbox" name="q18[]" value="Repair items" class="formbold-input-radio" /> Repairing items <span class="formbold-radio-checkmark"></span></label></div>
+                <div class="formbold-radio-group"><label class="formbold-radio-label"><input type="checkbox" name="q18[]" value="Second-hand" class="formbold-input-radio" /> Buying second-hand <span class="formbold-radio-checkmark"></span></label></div>
+                <div class="formbold-radio-group"><label class="formbold-radio-label"><input type="checkbox" name="q18[]" value="Avoid single-use" class="formbold-input-radio" /> Avoiding single-use plastics <span class="formbold-radio-checkmark"></span></label></div>
+                <div class="formbold-radio-group"><label class="formbold-radio-label"><input type="checkbox" name="q18[]" value="Composting" class="formbold-input-radio" /> Composting food scraps <span class="formbold-radio-checkmark"></span></label></div>
+                <div class="formbold-radio-group"><label class="formbold-radio-label"><input type="checkbox" name="q18[]" value="Reducing waste" class="formbold-input-radio" /> Reducing overall waste <span class="formbold-radio-checkmark"></span></label></div>
+              </div>
+            </div>
+            
+
+            
       
             <div>
               <label for="message" class="formbold-form-label">
@@ -261,6 +426,7 @@
 
 </body>
 <style>
+  
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 * {
     margin: 0;
@@ -270,6 +436,12 @@
 body {
     font-family: 'Inter', sans-serif;
 }
+.responsive-image {
+    width: 100%; /* Image takes full width of the container */
+    height: auto; /* Maintains aspect ratio */
+    aspect-ratio: 16 / 9; /* Adjust this ratio as needed */
+}
+
 .formbold-main-wrapper {
     display: flex;
     align-items: center;
