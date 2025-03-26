@@ -192,12 +192,37 @@ shuffleArray(stimuliPairs);
 let currentStimulusIndex = 0;
 let startTime;  // Variable to store when the user starts dragging
 
+let round = 1; // Differentate between swap bin and normal
+let roundIndex = 0; // Should replace currentStimulus Index
+const totalRounds = 2; // How many total rounds
+
+// swaps bins
+function swapBins() {
+    const container = document.getElementById("bin-container");
+    const yellowBin = document.getElementById("bin-yellow");
+    const redBin = document.getElementById("bin-red");
+
+    container.insertBefore(redBin, yellowBin); // Swaps their position
+}
+
 
 // Here you put next page from the sorting
 function loadNextStimulus() {
     if (currentStimulusIndex >= stimuliPairs.length) {
-        alert("Experiment complete! Data saved.");
-        return;
+        // // Old code
+        // alert("Experiment complete! Data saved.");
+        // return;
+
+        if (round < totalRounds) {
+            round++;
+            currentStimulusIndex = 0;
+            swapBins();
+            alert("Testing, Bins are swap. Delete this alert after testing");
+            loadNextStimulus(); // Starts next round
+        } else {
+            alert("Experiment complete! Data saved.");
+            return;
+        }
     }
 
     const stimulus = stimuliPairs[currentStimulusIndex];
@@ -267,7 +292,8 @@ function dropItem(event, binColor) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
             participantID: participantID,
-            item: stimulus.item,
+            // item: stimulus.item,
+            item: `${stimulus.item}_${round}`,
             selectedBin: binColor,
             correct: correct,
             timeTaken: timeTaken
