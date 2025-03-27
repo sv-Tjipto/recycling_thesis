@@ -208,7 +208,7 @@ function swapBinPositions() {
 
 // Here you put next page from the sorting
 function loadNextStimulus() {
-    if (currentStimulusIndex >= 10) {
+    if (currentStimulusIndex >= stimuliPairs.length) {
         // // Old code
         // alert("Experiment complete! Data saved.");
         // return;
