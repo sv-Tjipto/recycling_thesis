@@ -217,10 +217,10 @@ function loadNextStimulus() {
             round++;
             currentStimulusIndex = 0;
             swapBinPositions();
-            alert("Testing, Bins are swap. Delete this alert after testing");
             loadNextStimulus(); // Starts next round
         } else {
             alert("Experiment complete! Data saved.");
+            window.location.href = "/pages/questions.html";
             return;
         }
     }
@@ -243,38 +243,6 @@ function startDrag(event) {
 function allowDrop(event) {
     event.preventDefault();  // Allow drop event
 }
-
-// function dropItem(event, binColor) {
-//     event.preventDefault();
-    
-//     let endTime = new Date().getTime();
-//     let timeTaken = (endTime - startTime) / 1000;
-//     const participantID = getCookie("participantID"); // Get stored participant ID
-
-//     const stimulus = stimuliPairs[currentStimulusIndex];
-//     let correct = (binColor === stimulus.correctBin) ? "Correct" : "Incorrect";
-
-//     // Send data to backend
-//     fetch("http://localhost:3000/save-sorting", {
-//         method: "POST",
-//         body: JSON.stringify({
-//             participantID: participantID,
-//             item: stimulus.item,
-//             selectedBin: binColor,
-//             correct: correct,
-//             timeTaken: timeTaken
-//         }),
-//         headers: { "Content-Type": "application/json" }
-//     })
-//     .then(response => response.json())
-//     .then(data => console.log("Saved:", data.message))
-//     .catch(error => console.error("Error:", error));
-
-//     console.log(`Item: ${stimulus.item} | Bin: ${binColor} | ${correct} | Time: ${timeTaken}s`);
-
-//     currentStimulusIndex++;
-//     loadNextStimulus();
-// }
 
 function dropItem(event, binColor) {
     event.preventDefault();
