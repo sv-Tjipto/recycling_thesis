@@ -22,7 +22,7 @@ if (!fs.existsSync(CSV_FOLDER)) {
 
 // Ensure CSV file exists with headers
 if (!fs.existsSync(CSV_FILE)) {
-    fs.writeFileSync(CSV_FILE, "Participant ID,Name,Knowledge,Frequency\n");
+    fs.writeFileSync(CSV_FILE, "Participant ID,Knowledge,Frequency\n");
 }
 
 
@@ -49,9 +49,9 @@ app.get("/pages/:page", (req, res) => {
 // Store participant details and assign a unique ID
 app.post("/submit-form", (req, res) => {
     try {
-        const { name, knowledge, frequency } = req.body;
+        const {knowledge, frequency } = req.body;
 
-        if (!name || !knowledge || !frequency) {
+        if (!knowledge || !frequency) {
             return res.status(400).json({ error: "All fields are required." });
         }
 
@@ -64,7 +64,7 @@ app.post("/submit-form", (req, res) => {
         // Generate Timestamp
         let timestamp = new Date().toISOString(); // e.g., "2024-03-19T14:30:00.000Z"
 
-        const newData = `${participantID},${timestamp},${name},${knowledge},${frequency}\n`;
+        const newData = `${participantID},${timestamp},${knowledge},${frequency}\n`;
 
         fs.appendFile(CSV_FILE, newData, err => {
             if (err) {

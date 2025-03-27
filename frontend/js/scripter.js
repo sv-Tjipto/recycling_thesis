@@ -109,12 +109,12 @@ const stimuliPairs = [
 
 // Participants Details
 function startTask() {
-    let name = document.getElementById("participant-name").value;
+    // let name = document.getElementById("participant-name").value;
     let knowledge = document.getElementById("recycling-knowledge").value;
     let frequency = document.getElementById("frequency").value;
 
     // Check if all fields are filled
-    if (!name || !knowledge || !frequency) {
+    if (!knowledge || !frequency) {
         alert("Please fill in all fields before proceeding.");
         return;
     }
@@ -125,7 +125,7 @@ function startTask() {
     fetch("http://localhost:3000/submit-form", {
         method: "POST",
         body: JSON.stringify({
-            name: document.getElementById("participant-name").value,
+            // name: document.getElementById("participant-name").value,
             knowledge: document.getElementById("recycling-knowledge").value,
             frequency: document.getElementById("frequency").value
         }),
@@ -196,19 +196,19 @@ let round = 1; // Differentate between swap bin and normal
 let roundIndex = 0; // Should replace currentStimulus Index
 const totalRounds = 2; // How many total rounds
 
-// swaps bins
-function swapBins() {
-    const container = document.getElementById("bin-container");
-    const yellowBin = document.getElementById("bin-yellow");
-    const redBin = document.getElementById("bin-red");
+function swapBinPositions() {
+    const container = document.querySelector(".bin-container");
+    const yellowBin = document.getElementById("yellow-bin");
+    const redBin = document.getElementById("red-bin");
 
-    container.insertBefore(redBin, yellowBin); // Swaps their position
+    container.insertBefore(redBin, yellowBin); // Moves red before yellow
 }
+
 
 
 // Here you put next page from the sorting
 function loadNextStimulus() {
-    if (currentStimulusIndex >= stimuliPairs.length) {
+    if (currentStimulusIndex >= 10) {
         // // Old code
         // alert("Experiment complete! Data saved.");
         // return;
@@ -216,7 +216,7 @@ function loadNextStimulus() {
         if (round < totalRounds) {
             round++;
             currentStimulusIndex = 0;
-            swapBins();
+            swapBinPositions();
             alert("Testing, Bins are swap. Delete this alert after testing");
             loadNextStimulus(); // Starts next round
         } else {
@@ -347,7 +347,7 @@ function getCookie(name) {
 // Survey Submission
 function submitSurvey() {
     let formData = {
-        name: document.getElementById("participant-name").value,
+        // name: document.getElementById("participant-name").value, //No longer needed
         knowledge: document.getElementById("recycling-knowledge").value,
         frequency: document.getElementById("frequency").value
     };
