@@ -90,7 +90,7 @@ const stimuliPairs = [
     { item: "Sticky_notes", correctBin: "yellow" },
     { item: "Sticky_tape", correctBin: "red" },
     { item: "Glass_candle_jar", correctBin: "yellow" },
-    { item: "Wax and wick ", correctBin: "red" },
+    { item: "Wax_and_wick", correctBin: "red" },
     { item: "Aluminium_toothpaste_tube_(empty)", correctBin: "yellow" },
     { item: "Plastic_cap", correctBin: "red" },
     { item: "Glass_soy_sauce_bottle", correctBin: "yellow" },
