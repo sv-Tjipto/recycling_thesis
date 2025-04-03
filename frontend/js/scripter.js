@@ -304,14 +304,6 @@ function getCookie(name) {
 }
 
 
-// // Generate or retrieve participant ID
-// if (!getCookie("participantID")) {
-//     setCookie("participantID", "P" + Math.floor(Math.random() * 100000), 7);
-// }
-// const participantID = getCookie("participantID");
-
-
-
 // Survey Submission
 function submitSurvey() {
     let formData = {
@@ -338,4 +330,79 @@ function stopTimer(event) {
     let endTime = new Date().getTime();
     let timeTaken = (endTime - startTime) / 1000;
     console.log(`Time taken: ${timeTaken} seconds`);
+}
+
+
+function submitQuestions(){
+    const knowledge = document.getElementById("recycling-knowledge").value;
+    const frequency = document.getElementById("recycle_home").value;
+    const age = document.getElementById("age").value;
+    const trustScale = document.getElementById("q12").value;
+
+    // Get radio button values
+    const gender = document.querySelector('input[name="gender"]:checked')?.value || "";
+    const housing = document.querySelector('input[name="housing"]:checked')?.value || "";
+
+    // Get "other" text if housing is "Other"
+    const housingOther = document.querySelector('input[name="house_other"]')?.value || "";
+    const fullHousing = (housing === "Other" && housingOther) ? `${housing} (${housingOther})` : housing;
+
+    // Get checkbox values
+    const bins = [...document.querySelectorAll('input[name="bins"]:checked')].map(cb => cb.value);
+    const q7 = [...document.querySelectorAll('input[name="q7[]"]:checked')].map(cb => cb.value);
+    const q11 = [...document.querySelectorAll('input[name="q11[]"]:checked')].map(cb => cb.value);
+    const q16 = [...document.querySelectorAll('input[name="q16[]"]:checked')].map(cb => cb.value);
+    const q18 = [...document.querySelectorAll('input[name="q18[]"]:checked')].map(cb => cb.value);
+
+    // Get confidence slider values
+    const confidence = {
+        plastic: document.getElementById("plasticConfidence").value,
+        glass: document.getElementById("glassConfidence").value,
+        metal: document.getElementById("metalConfidence").value,
+        softPlastic: document.getElementById("softPlasticConfidence").value,
+        eWaste: document.getElementById("eWasteConfidence").value,
+    };
+
+    // Basic validation
+    if (!gender || !knowledge || !frequency || !age || !fullHousing) {
+        alert("Please fill in all required fields.");
+        return;
+    }
+
+    // Compile data
+    const formData = {
+        gender,
+        age,
+        housing: fullHousing,
+        binAccess: bins,
+        knowledge,
+        frequency,
+        recyclingActions: q7,
+        confidenceLevels: confidence,
+        recyclingConcerns: q11,
+        trustScale,
+        motivation: q16,
+        sustainabilityHabits: q18
+    };
+
+    console.log("Survey submission:", formData);
+
+    // Send to backend if needed
+    fetch("http://localhost:3000/submit-survey", {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(res => res.json())
+    .then(data => {
+        alert("Thank you for completing the final survey!");
+        // Optionally redirect
+        // window.location.href = "/pages/thankyou.html";
+    })
+    .catch(err => {
+        console.error("Submission error:", err);
+        alert("There was an error submitting the form.");
+    });
 }
