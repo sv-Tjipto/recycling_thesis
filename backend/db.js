@@ -6,13 +6,7 @@ db.serialize(() => {
   db.run(`CREATE TABLE IF NOT EXISTS survey (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     participant_id TEXT,
-    timestamp TEXT,
-    gender TEXT,
-    age INTEGER,
-    housing TEXT,
-    bins TEXT,
-    knowledge INTEGER,
-    frequency INTEGER
+    timestamp TEXT
   )`);
 });
 
