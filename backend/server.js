@@ -20,12 +20,21 @@ if (!fs.existsSync(CSV_FOLDER)) {
     fs.mkdirSync(CSV_FOLDER, { recursive: true });
 }
 
-// Ensure CSV file exists with headers
-if (!fs.existsSync(CSV_FILE)) {
-    fs.writeFileSync(CSV_FILE, "Participant ID,Knowledge,Frequency\n");
+// // Ensure CSV file exists with headers
+// if (!fs.existsSync(CSV_FILE)) {
+//     fs.writeFileSync(CSV_FILE, "Participant ID,TimeStamp,Knowledge,Frequency\n");
+// }
+
+if (!fs.existsSync(SURVEY_CSV)) {
+    const headers = [
+      "Participant ID","Timestamp","Knowledge_Start","Frequency_Start", "Gender", "Age", "Housing", "Bin Access",
+      "Knowledge", "Frequency", "Recycling Actions",
+      "Confidence - Plastic", "Glass", "Metal", "Soft Plastic", "E-Waste",
+      "Recycling Concerns", "Trust Scale", "Motivation", "Sustainable Habits"
+    ];
+    fs.writeFileSync(SURVEY_CSV, headers.join(",") + "\n");
 }
-
-
+  
 
 // Serve frontend files from "frontend" folder
 app.use(express.static(path.join(__dirname, "..", "frontend")));
@@ -150,46 +159,52 @@ app.post("/save-sorting", (req, res) => {
     // res.status(200).json({ message: "Data recoreded successfully!" });
 });
 
-// app.post("/save-sorting", (req, res) => {
-//     console.log("Incoming request to /save-sorting"); // Debugging Log
 
-//     const { participantID, item, selectedBin, correct, timeTaken } = req.body;
+app.post("/submit-survey", (req, res) =>{
+    try{
+        const participantID = req.cookies?.participantID || "P" + Math.floor(Math.random() * 100000); // fallback
+        const {
+            gender, age, housing, binAccess, knowledge, frequency,
+            recyclingActions, confidenceLevels, recyclingConcerns,
+            trustScale, motivation, sustainabilityHabits
+        } = req.body;
 
-//     if (!participantID || !item || !selectedBin || !correct || !timeTaken) {
-//         console.error("Missing sorting task data.");
-//         return res.status(400).json({ error: "Missing sorting task data." });
-//     }
+    // Format into one CSV line
+    const row = [
+        participantID,
+        gender,
+        age,
+        `"${housing}"`,
+        `"${binAccess.join("; ")}"`,
+        knowledge,
+        frequency,
+        `"${recyclingActions.join("; ")}"`,
+        confidenceLevels.plastic,
+        confidenceLevels.glass,
+        confidenceLevels.metal,
+        confidenceLevels.softPlastic,
+        confidenceLevels.eWaste,
+        `"${recyclingConcerns.join("; ")}"`,
+        trustScale,
+        `"${motivation.join("; ")}"`,
+        `"${sustainabilityHabits.join("; ")}"`
+        ];
+  
+        // Append to file
+        fs.appendFile(SURVEY_CSV, row.join(",") + "\n", (err) => {
+        if (err) {
+            console.error("Error writing survey:", err);
+            return res.status(500).json({ error: "Failed to save survey." });
+        }
+        console.log(`Survey saved for ${participantID}`);
+        res.json({ message: "Survey saved successfully!" });
+        });
+    } catch (error) {
+        console.error("Survey route error:", error);
+        res.status(500).json({ error: "Server error saving survey." });
+    }
 
-//     fs.readFile(CSV_FILE, "utf8", (err, data) => {
-//         if (err) {
-//             console.error("Error reading CSV:", err);
-//             return res.status(500).json({ error: "Failed to read data" });
-//         }
-
-//         let rows = data.split("\n").map(row => row.split(","));
-//         let participantIndex = rows.findIndex(row => row[0] === participantID);
-
-//         if (participantIndex === -1) {
-//             console.error(`Participant ID ${participantID} not found.`);
-//             return res.status(404).json({ error: "Participant not found." });
-//         }
-
-//         rows[participantIndex].push(item, selectedBin, correct, timeTaken);
-
-//         let updatedCSV = rows.map(row => row.join(",")).join("\n");
-
-//         fs.writeFile(CSV_FILE, updatedCSV, (err) => {
-//             if (err) {
-//                 console.error("Error updating CSV:", err);
-//                 return res.status(500).json({ error: "Failed to update participant data" });
-//             }
-//             console.log(`Sorting task data saved for Participant ${participantID}!`);
-//             res.status(200).json({ message: `Data updated for ${participantID}` });
-//         });
-//     });
-// });
-
-
+});
 
 
 // Start the server
