@@ -4,6 +4,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const path = require("path");
 const open = require("open");
+const db = require("./db"); // Calls the Database
 
 const app = express();
 app.use(cors());
@@ -25,7 +26,7 @@ if (!fs.existsSync(CSV_FOLDER)) {
 //     fs.writeFileSync(CSV_FILE, "Participant ID,TimeStamp,Knowledge,Frequency\n");
 // }
 
-if (!fs.existsSync(SURVEY_CSV)) {
+if (!fs.existsSync(CSV_FILE)) {
     const headers = [
       "Participant ID","Timestamp","Knowledge_Start","Frequency_Start", "Gender", "Age", "Housing", "Bin Access",
       "Knowledge", "Frequency", "Recycling Actions",
@@ -74,6 +75,29 @@ app.post("/submit-form", (req, res) => {
         let timestamp = new Date().toISOString(); // e.g., "2024-03-19T14:30:00.000Z"
 
         const newData = `${participantID},${timestamp},${knowledge},${frequency}\n`;
+
+        // SQL ----------------------------------------------------------------
+
+        const sql = `
+        INSERT INTO survey (
+        participant_id,
+        timestamp
+        ) VALUES (?, ?)
+        `;
+
+        db.run(sql, [
+            participantID,
+            timestamp
+        ], (err) => {
+            if (err) {
+                console.error("Error saving to DB:", err);
+                return res.status(500).json({ error: "Failed to save initial details."});
+            }
+
+            console.log(`Saved initial details for ${participantID} at ${timestamp} into Database`);
+        });
+        // ------------------------------------------------------------------
+
 
         fs.appendFile(CSV_FILE, newData, err => {
             if (err) {
