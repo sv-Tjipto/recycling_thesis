@@ -69,7 +69,9 @@ app.post("/submit-form", (req, res) => {
         }
 
         //Fix: Check if participant ID exists in cookies
-        let participantID = req.cookies?.participantID || "P" + Math.floor(Math.random() * 100000);
+        // let participantID = req.cookies?.participantID || "P" + Math.floor(Math.random() * 100000);
+        let participantID = "P" + Math.floor(Math.random() * 100000);
+
 
         //Fix: Set participant ID in cookie for future use
         res.cookie("participantID", participantID, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOnly: false });
@@ -117,6 +119,11 @@ app.post("/submit-form", (req, res) => {
     }
 });
 
+// Resets participantID
+app.get("/reset", (req, res) => {
+    res.clearCookie("participantID");
+    res.redirect("/"); // or wherever your start page is
+});
 
 app.post("/submit-consent", (req, res) => {
     console.log("Incoming JSON:", req.body); // Log the incoming JSON
