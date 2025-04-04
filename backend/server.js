@@ -79,7 +79,7 @@ app.post("/submit-form", (req, res) => {
         // SQL ----------------------------------------------------------------
 
         const sql = `
-        INSERT INTO survey (
+        INSERT INTO particulars_start(
         participant_id,
         timestamp
         ) VALUES (?, ?)
@@ -118,17 +118,39 @@ app.post("/submit-form", (req, res) => {
 app.post("/save-sorting", (req, res) => {
     console.log("Incoming JSON:", req.body); // Log the incoming JSON
 
-    const { participantID, item, selectedBin, correct, timeTaken } = req.body;
+    const { participantID, item, item_id, round,selectedBin, correct, timeTaken, orderIndex } = req.body;
 
-    if (!participantID || !item || !selectedBin || !correct || !timeTaken) {
+    if (!participantID || !item || !item_id || !round || !selectedBin || !correct || !timeTaken || !orderIndex) {
                 console.error("Missing sorting task data.");
                 return res.status(400).json({ error: "Missing sorting task data." });
             }
-        
+    
+    
     console.log("Lols balls")
     if (!req.body || typeof req.body !== "object") {
         return res.status(400).json({ error: "Invalid JSON format." });
     }
+
+    // SQL -------------------------------------------------------------------
+
+    const sql = `
+    INSERT INTO dustbin_picks (participant_id, item, item_id, round, correct, time_taken, item_order, timestamp)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    ON CONFLICT(participant_id, item_id, round) DO UPDATE SET
+        correct = excluded.correct,
+        time_taken = excluded.time_taken,
+        item_order = excluded.item_order,
+        timestamp = excluded.timestamp
+    `;
+    const timestamp = new Date().toISOString();
+    
+    db.run(sql, [participantID, item, item_id, round, correct, timeTaken, orderIndex, timestamp], (err) => {
+        if (err) {
+          console.error("Error saving/updating:", err);
+        } else {
+          console.log("Saved or updated successfully.");
+        }
+      });
 
     fs.readFile(CSV_FILE, "utf8", (err, data) => {
                 if (err) {

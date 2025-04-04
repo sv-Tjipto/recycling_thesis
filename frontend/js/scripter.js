@@ -1,105 +1,106 @@
 const stimuliPairs = [
-    { item: "Cardboard_Boxes", correctBin: "yellow" },
-    { item: "Waxed_Cardboard_boxes", correctBin: "red" },
-    { item: "Pizza_boxes", correctBin: "yellow" },
-    { item: "Pizza_boxes_with_food_scraps", correctBin: "red" },
-    { item: "Magazines", correctBin: "yellow" },
-    { item: "Books", correctBin: "red" },
-    { item: "Soap_Bottle", correctBin: "yellow" },
-    { item: "Cosmetic_Bottle", correctBin: "red" },
-    { item: "Film_packaging", correctBin: "yellow" },
-    { item: "Cling_wrap", correctBin: "red" },
-    { item: "Paper", correctBin: "yellow" },
-    { item: "Tissues", correctBin: "red" },
-    { item: "Gift_wrapping_paper", correctBin: "yellow" },
-    { item: "Baking_paper", correctBin: "red" },
-    { item: "Cleaning_product_(Domestic)", correctBin: "yellow" },
-    { item: "Cleaning_product_(International)", correctBin: "red" },
-    { item: "Wine_Bottles", correctBin: "yellow" },
-    { item: "Drinking_glasses", correctBin: "red" },
-    { item: "Aluminium_foil", correctBin: "yellow" },
-    { item: "Foiled_Line_Bag", correctBin: "red" },
-    { item: "Aluminium_cans", correctBin: "yellow" },
-    { item: "Helium_tanks", correctBin: "red" },
-    { item: "Freezer_bags", correctBin: "yellow" },
-    { item: "Beef_jerky_bag", correctBin: "red" },
-    { item: "Boarding_pass", correctBin: "yellow" },
-    { item: "Thermal_receipts", correctBin: "red" },
-    { item: "Pasta_jar_(empty)", correctBin: "yellow" },
-    { item: "Ceramic_jar", correctBin: "red" },
-    { item: "Plastic_document_sleeves", correctBin: "yellow" },
-    { item: "Laminated_document_sleeves", correctBin: "red" },
-    { item: "Biodegradeable_cups", correctBin: "yellow" },
-    { item: "Disposable_paper_cups", correctBin: "red" },
-    { item: "Takeaway_container_(plastic)", correctBin: "yellow" },
-    { item: "Tupperware_container_(plastic)", correctBin: "red" },
-    { item: "Milk_jugs", correctBin: "yellow" },
-    { item: "Long-life_cartons", correctBin: "red" },
-    { item: "Paper_bags", correctBin: "yellow" },
-    { item: "Plastic_bags", correctBin: "red" },
-    { item: "Plastic_water_bottle", correctBin: "yellow" },
-    { item: "Metal_water_bottle", correctBin: "red" },
-    { item: "Reusable_hard_plastic_cups", correctBin: "yellow" },
-    { item: "Glass_cups", correctBin: "red" },
-    { item: "Sushi_trays", correctBin: "yellow" },
-    { item: "Polystyrene_trays", correctBin: "red" },
-    { item: "Ice_cream_tub", correctBin: "yellow" },
-    { item: "Polystyrene_ice_cream_tub", correctBin: "red" },
-    { item: "Paper_padded_mailers", correctBin: "yellow" },
-    { item: "Bubble_wrap", correctBin: "red" },
-    { item: "Coffee_cup_lids", correctBin: "yellow" },
-    { item: "Fast_food_drink_lids", correctBin: "red" },
-    { item: "Blue_ray_disk_case_(Polypropylene)", correctBin: "yellow" },
-    { item: "CD_cases_(Polystyrene_plastic)", correctBin: "red" },
-    { item: "Cardboard_card_sleeves", correctBin: "yellow" },
-    { item: "Plastic_cup_sleeves", correctBin: "red" },
-    { item: "Metal_jar_lid", correctBin: "yellow" },
-    { item: "Cork_lid", correctBin: "red" },
-    { item: "Plastic_chair_leg", correctBin: "yellow" },
-    { item: "Metal_chair_leg", correctBin: "red" },
-    { item: "Plastic_fruit_punnett", correctBin: "yellow" },
-    { item: "Styrofoam_fruit_punnett", correctBin: "red" },
-    { item: "Aluminium_baking_tray", correctBin: "yellow" },
-    { item: "Non-stick_baking_trays", correctBin: "red" },
-    { item: "Metal_bread_ties", correctBin: "yellow" },
-    { item: "Bread_clips", correctBin: "red" },
-    { item: "Plastic_medicine_bottles", correctBin: "yellow" },
-    { item: "Medicinal_blister_packs", correctBin: "red" },
-    { item: "Paper_straw_(clean)", correctBin: "yellow" },
-    { item: "Plastic_straw_(clean)", correctBin: "red" },
-    { item: "Empty_sauce_bottle", correctBin: "yellow" },
-    { item: "Sauce_sachet", correctBin: "red" },
-    { item: "Non-heat_proof_cookware_lids", correctBin: "yellow" },
-    { item: "Ceramic_pot_lids", correctBin: "red" },
-    { item: "Plastic_ice_cube_tray", correctBin: "yellow" },
-    { item: "Silicone_ice_cube_tray", correctBin: "red" },
-    { item: "Plastic_plant_pot_(clean)", correctBin: "yellow" },
-    { item: "Clay_plant_pot_(clean)", correctBin: "red" },
-    { item: "Cardboard_soda_carton", correctBin: "yellow" },
-    { item: "Shrink_wrap", correctBin: "red" },
-    { item: "Cardboard_shoe_box", correctBin: "yellow" },
-    { item: "Fabric_shoe_bag", correctBin: "red" },
-    { item: "Paper_wrap_bouquet_of_flowers", correctBin: "yellow" },
-    { item: "Plastic_cellophane", correctBin: "red" },
-    { item: "Spray_Cleaner_Bottle", correctBin: "yellow" },
-    { item: "Spray_CLeaner_Bottle's_Lid", correctBin: "red" },
-    { item: "Aerosal_can", correctBin: "yellow" },
-    { item: "Aerosol_can_cap", correctBin: "red" },
-    { item: "Steel_can", correctBin: "yellow" },
-    { item: "Food_can_lids_with_plastic_lining", correctBin: "red" },
-    { item: "Sticky_notes", correctBin: "yellow" },
-    { item: "Sticky_tape", correctBin: "red" },
-    { item: "Glass_candle_jar", correctBin: "yellow" },
-    { item: "Wax_and_wick", correctBin: "red" },
-    { item: "Aluminium_toothpaste_tube_(empty)", correctBin: "yellow" },
-    { item: "Plastic_cap", correctBin: "red" },
-    { item: "Glass_soy_sauce_bottle", correctBin: "yellow" },
-    { item: "Plastic_stopper", correctBin: "red" },
-    { item: "Plastic_peanut_butter_container_(empty)", correctBin: "yellow" },
-    { item: "Inner_plastic_container", correctBin: "red" },
-    { item: "Plastic_packaging_of_batteries", correctBin: "yellow" },
-    { item: "Batteries", correctBin: "red" }
+    { id: 1, item: "Cardboard_Boxes", correctBin: "yellow" },
+    { id: 2, item: "Waxed_Cardboard_boxes", correctBin: "red" },
+    { id: 3, item: "Pizza_boxes", correctBin: "yellow" },
+    { id: 4, item: "Pizza_boxes_with_food_scraps", correctBin: "red" },
+    { id: 5, item: "Magazines", correctBin: "yellow" },
+    { id: 6, item: "Books", correctBin: "red" },
+    { id: 7, item: "Soap_Bottle", correctBin: "yellow" },
+    { id: 8, item: "Cosmetic_Bottle", correctBin: "red" },
+    { id: 9, item: "Film_packaging", correctBin: "yellow" },
+    { id: 10, item: "Cling_wrap", correctBin: "red" },
+    { id: 11, item: "Paper", correctBin: "yellow" },
+    { id: 12, item: "Tissues", correctBin: "red" },
+    { id: 13, item: "Gift_wrapping_paper", correctBin: "yellow" },
+    { id: 14, item: "Baking_paper", correctBin: "red" },
+    { id: 15, item: "Cleaning_product_(Domestic)", correctBin: "yellow" },
+    { id: 16, item: "Cleaning_product_(International)", correctBin: "red" },
+    { id: 17, item: "Wine_Bottles", correctBin: "yellow" },
+    { id: 18, item: "Drinking_glasses", correctBin: "red" },
+    { id: 19, item: "Aluminium_foil", correctBin: "yellow" },
+    { id: 20, item: "Foiled_Line_Bag", correctBin: "red" },
+    { id: 21, item: "Aluminium_cans", correctBin: "yellow" },
+    { id: 22, item: "Helium_tanks", correctBin: "red" },
+    { id: 23, item: "Freezer_bags", correctBin: "yellow" },
+    { id: 24, item: "Beef_jerky_bag", correctBin: "red" },
+    { id: 25, item: "Boarding_pass", correctBin: "yellow" },
+    { id: 26, item: "Thermal_receipts", correctBin: "red" },
+    { id: 27, item: "Pasta_jar_(empty)", correctBin: "yellow" },
+    { id: 28, item: "Ceramic_jar", correctBin: "red" },
+    { id: 29, item: "Plastic_document_sleeves", correctBin: "yellow" },
+    { id: 30, item: "Laminated_document_sleeves", correctBin: "red" },
+    { id: 31, item: "Biodegradeable_cups", correctBin: "yellow" },
+    { id: 32, item: "Disposable_paper_cups", correctBin: "red" },
+    { id: 33, item: "Takeaway_container_(plastic)", correctBin: "yellow" },
+    { id: 34, item: "Tupperware_container_(plastic)", correctBin: "red" },
+    { id: 35, item: "Milk_jugs", correctBin: "yellow" },
+    { id: 36, item: "Long-life_cartons", correctBin: "red" },
+    { id: 37, item: "Paper_bags", correctBin: "yellow" },
+    { id: 38, item: "Plastic_bags", correctBin: "red" },
+    { id: 39, item: "Plastic_water_bottle", correctBin: "yellow" },
+    { id: 40, item: "Metal_water_bottle", correctBin: "red" },
+    { id: 41, item: "Reusable_hard_plastic_cups", correctBin: "yellow" },
+    { id: 42, item: "Glass_cups", correctBin: "red" },
+    { id: 43, item: "Sushi_trays", correctBin: "yellow" },
+    { id: 44, item: "Polystyrene_trays", correctBin: "red" },
+    { id: 45, item: "Ice_cream_tub", correctBin: "yellow" },
+    { id: 46, item: "Polystyrene_ice_cream_tub", correctBin: "red" },
+    { id: 47, item: "Paper_padded_mailers", correctBin: "yellow" },
+    { id: 48, item: "Bubble_wrap", correctBin: "red" },
+    { id: 49, item: "Coffee_cup_lids", correctBin: "yellow" },
+    { id: 50, item: "Fast_food_drink_lids", correctBin: "red" },
+    { id: 51, item: "Blue_ray_disk_case_(Polypropylene)", correctBin: "yellow" },
+    { id: 52, item: "CD_cases_(Polystyrene_plastic)", correctBin: "red" },
+    { id: 53, item: "Cardboard_card_sleeves", correctBin: "yellow" },
+    { id: 54, item: "Plastic_cup_sleeves", correctBin: "red" },
+    { id: 55, item: "Metal_jar_lid", correctBin: "yellow" },
+    { id: 56, item: "Cork_lid", correctBin: "red" },
+    { id: 57, item: "Plastic_chair_leg", correctBin: "yellow" },
+    { id: 58, item: "Metal_chair_leg", correctBin: "red" },
+    { id: 59, item: "Plastic_fruit_punnett", correctBin: "yellow" },
+    { id: 60, item: "Styrofoam_fruit_punnett", correctBin: "red" },
+    { id: 61, item: "Aluminium_baking_tray", correctBin: "yellow" },
+    { id: 62, item: "Non-stick_baking_trays", correctBin: "red" },
+    { id: 63, item: "Metal_bread_ties", correctBin: "yellow" },
+    { id: 64, item: "Bread_clips", correctBin: "red" },
+    { id: 65, item: "Plastic_medicine_bottles", correctBin: "yellow" },
+    { id: 66, item: "Medicinal_blister_packs", correctBin: "red" },
+    { id: 67, item: "Paper_straw_(clean)", correctBin: "yellow" },
+    { id: 68, item: "Plastic_straw_(clean)", correctBin: "red" },
+    { id: 69, item: "Empty_sauce_bottle", correctBin: "yellow" },
+    { id: 70, item: "Sauce_sachet", correctBin: "red" },
+    { id: 71, item: "Non-heat_proof_cookware_lids", correctBin: "yellow" },
+    { id: 72, item: "Ceramic_pot_lids", correctBin: "red" },
+    { id: 73, item: "Plastic_ice_cube_tray", correctBin: "yellow" },
+    { id: 74, item: "Silicone_ice_cube_tray", correctBin: "red" },
+    { id: 75, item: "Plastic_plant_pot_(clean)", correctBin: "yellow" },
+    { id: 76, item: "Clay_plant_pot_(clean)", correctBin: "red" },
+    { id: 77, item: "Cardboard_soda_carton", correctBin: "yellow" },
+    { id: 78, item: "Shrink_wrap", correctBin: "red" },
+    { id: 79, item: "Cardboard_shoe_box", correctBin: "yellow" },
+    { id: 80, item: "Fabric_shoe_bag", correctBin: "red" },
+    { id: 81, item: "Paper_wrap_bouquet_of_flowers", correctBin: "yellow" },
+    { id: 82, item: "Plastic_cellophane", correctBin: "red" },
+    { id: 83, item: "Spray_Cleaner_Bottle", correctBin: "yellow" },
+    { id: 84, item: "Spray_CLeaner_Bottle's_Lid", correctBin: "red" },
+    { id: 85, item: "Aerosal_can", correctBin: "yellow" },
+    { id: 86, item: "Aerosol_can_cap", correctBin: "red" },
+    { id: 87, item: "Steel_can", correctBin: "yellow" },
+    { id: 88, item: "Food_can_lids_with_plastic_lining", correctBin: "red" },
+    { id: 89, item: "Sticky_notes", correctBin: "yellow" },
+    { id: 90, item: "Sticky_tape", correctBin: "red" },
+    { id: 91, item: "Glass_candle_jar", correctBin: "yellow" },
+    { id: 92, item: "Wax_and_wick", correctBin: "red" },
+    { id: 93, item: "Aluminium_toothpaste_tube_(empty)", correctBin: "yellow" },
+    { id: 94, item: "Plastic_cap", correctBin: "red" },
+    { id: 95, item: "Glass_soy_sauce_bottle", correctBin: "yellow" },
+    { id: 96, item: "Plastic_stopper", correctBin: "red" },
+    { id: 97, item: "Plastic_peanut_butter_container_(empty)", correctBin: "yellow" },
+    { id: 98, item: "Inner_plastic_container", correctBin: "red" },
+    { id: 99, item: "Plastic_packaging_of_batteries", correctBin: "yellow" },
+    { id: 100, item: "Batteries", correctBin: "red" }
 ];
+  
 // function startTask() {
 //     totalParticipants++;
 //     document.getElementById("survey-section").style.display = "none";
@@ -189,6 +190,7 @@ function shuffleArray(array) {
 shuffleArray(stimuliPairs);
 
 // Sorting task
+let orderIndex = 1;
 let currentStimulusIndex = 0;
 let startTime;  // Variable to store when the user starts dragging
 
@@ -225,15 +227,23 @@ function loadNextStimulus() {
         }
     }
 
+    
+
     const stimulus = stimuliPairs[currentStimulusIndex];
+    const stimulusImg = document.getElementById("stimulus");
+
     document.getElementById("stimulus").src = `/assets/stimuli/${stimulus.item}.png`;
     document.getElementById("stimulus").alt = stimulus.item.replace(/_/g, " ");
 
-    startTime = null;  // Reset the timer
+    stimulusImg.onload = () => {
+        startTime = new Date().getTime();  // Start timer when image is fully loaded
+        console.log("Image loaded. Timer started.");
+    };
 }
 
 function startDrag(event) {
-    startTime = new Date().getTime();  // Start timing
+    // Not need 
+    // startTime = new Date().getTime();  // Start timing
     event.dataTransfer.setData("text", currentStimulusIndex);  // Pass index
 }
 
@@ -260,11 +270,13 @@ function dropItem(event, binColor) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
             participantID: participantID,
-            // item: stimulus.item,
-            item: `${stimulus.item}_${round}`,
+            item: stimulus.item,
+            item_id: stimulus.id,
+            round: round,
             selectedBin: binColor,
             correct: correct,
-            timeTaken: timeTaken
+            timeTaken: timeTaken,
+            orderIndex: orderIndex
         })
     })
     .then(response => response.json())
@@ -274,6 +286,7 @@ function dropItem(event, binColor) {
     console.log(`Item: ${stimulus.item} | Bin: ${binColor} | ${correct} | Time: ${timeTaken}s`);
 
     currentStimulusIndex++;
+    orderIndex++; 
     loadNextStimulus();
 }
 
