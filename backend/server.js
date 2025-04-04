@@ -5,11 +5,14 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const open = require("open");
 const db = require("./db"); // Calls the Database
+const cookieParser = require("cookie-parser"); // Cookie reader Backend
+
+
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());  // Ensures JSON data is parsed
-
+app.use(cookieParser()); // Ensures the Cookie is parsed
 
 const ROOT_FOLDER = path.join(__dirname, "..");  // Go to the root directory
 const CSV_FOLDER = path.join(ROOT_FOLDER, "saved_data");  // Saved in root/saved_data
@@ -105,13 +108,37 @@ app.post("/submit-form", (req, res) => {
                 return res.status(500).json({ error: "Failed to save participant data" });
             }
             console.log(`Participant ${participantID} saved at ${timestamp}`);
-            res.json({ redirectUrl: "/pages/sortingTask.html", participantID });
+            res.json({ redirectUrl: "/pages/consent.html", participantID });
         });
 
     } catch (error) {
         console.error("Server error:", error);
         res.status(500).json({ error: "Internal Server Error" });
     }
+});
+
+
+app.post("/submit-consent", (req, res) => {
+    console.log("Incoming JSON:", req.body); // Log the incoming JSON
+    const { consent } = req.body;
+    const participantID = req.cookies.participantID;
+
+    if (!participantID || !consent) {d
+        console.error("Missing consent on Backend.");
+        return res.status(400).json({ error: "Missing consent on Backend."});
+    }
+    
+    const sql = `UPDATE particulars_start SET consent = ? WHERE participant_id = ?`;
+
+    db.run(sql, [consent, participantID], (err) => {
+        if (err) {
+          console.error("Consent update failed:", err);
+          return res.status(500).json({ error: "Database error." });
+        }
+        res.json({ message: "Consent recorded." });
+      });
+
+
 });
 
 

@@ -10,9 +10,11 @@ const db = new sqlite3.Database("./data/survey.db", (err) => {
 
 
 db.serialize(() => {
+  // consent -- 1 for true, 0 for false
   db.run(`CREATE TABLE IF NOT EXISTS particulars_start (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     participant_id TEXT UNIQUE,
+    consent INTEGER,
     timestamp TEXT
   )`);
 

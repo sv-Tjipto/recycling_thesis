@@ -121,7 +121,7 @@ function startTask() {
     }
 
 
-    let formData = { name,knowledge,frequency};
+    let formData = {knowledge,frequency};
 
     fetch("http://localhost:3000/submit-form", {
         method: "POST",
@@ -146,6 +146,38 @@ function startTask() {
     .catch(error => console.error("Error:", error));
 }
 
+function submitConsent() {
+
+    let consent = document.getElementById("agreeConsent")
+    // const participantID = getCookie("participantID");
+
+    if (!consent.checked) {
+        alert("Please consent before proceeding");
+        return;
+    }
+
+
+    fetch("http://localhost:3000/submit-consent", {
+        method: "POST",
+        body: JSON.stringify({
+            // participantID: participantID,
+            consent: 1
+        }),
+        headers: {
+            "Content-Type": "application/json",  // Ensure JSON format
+            "Accept": "application/json"  // Expect JSON response
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("Consent submitted:", data);
+        // Redirect after successful submission
+        window.location.href = "/pages/sortingTask.html";
+    })
+    .catch(error => console.error("Error submitting consent:", error));
+    
+
+}
 
 function downloadCSV() {
     window.location.href = "http://localhost:3000/download-csv";
