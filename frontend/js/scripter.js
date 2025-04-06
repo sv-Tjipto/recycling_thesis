@@ -106,8 +106,6 @@ const stimuliPairs = [
 function startTask() {
     
 
-    
-
     fetch("http://localhost:3000/submit-form", {
         method: "POST",
         body: JSON.stringify({
@@ -123,7 +121,7 @@ function startTask() {
         if (data.redirectUrl) {
             window.location.href = data.redirectUrl; // Redirect based on backend response
         } else {
-            alert(data.message || "Data submitted successfully!");
+            alert(data.message || "Survey started successfully!");
         }
     })
     .catch(error => console.error("Error:", error));
