@@ -172,7 +172,9 @@ function submitConsent() {
     .then(data => {
         console.log("Consent submitted:", data);
         // Redirect after successful submission
-        window.location.href = "/pages/sortingTask.html";
+        // window.location.href = "/pages/sortingTask.html";
+        window.location.href = "/pages/questions.html"; // Change this temporary
+
     })
     .catch(error => console.error("Error submitting consent:", error));
     
@@ -377,10 +379,46 @@ function stopTimer(event) {
     console.log(`Time taken: ${timeTaken} seconds`);
 }
 
+console.log(document.getElementById("q11_other").disabled); // should be true
 
-function submitQuestions(){
+function toggleOtherText(checkboxId, inputId) {
+    const checkbox = document.getElementById(checkboxId);
+    const input = document.getElementById(inputId);
+  
+    if (!checkbox || !input) return;
+  
+    const isChecked = checkbox.checked;
+    input.disabled = !isChecked;
+    input.tabIndex = isChecked ? 0 : -1;
+    input.style.pointerEvents = isChecked ? "auto" : "none";
+  
+    if (!isChecked) {
+      input.value = "";
+    }
+}
+  
+function handleHousingChange() {
+    const otherRadio = document.getElementById("housing-other");
+    const otherInput = document.getElementById("house_other");
+  
+    if (!otherRadio || !otherInput) return;
+  
+    const isOtherSelected = otherRadio.checked;
+  
+    otherInput.disabled = !isOtherSelected;
+    otherInput.tabIndex = isOtherSelected ? 0 : -1;
+    otherInput.style.pointerEvents = isOtherSelected ? "auto" : "none";
+  
+    if (!isOtherSelected) {
+      otherInput.value = ""; // Optional reset
+    }
+  }
+  
+function submitQuestions(event){
+    event.preventDefault(); // Prevent default form submission (so we can use fetch)
+
     const knowledge = document.getElementById("recycling-knowledge").value;
-    const frequency = document.getElementById("recycle_home").value;
+    const frequency = document.getElementById("recycling-home").value;
     const age = document.getElementById("age").value;
     const trustScale = document.getElementById("q12").value;
 
@@ -391,6 +429,8 @@ function submitQuestions(){
     // Get "other" text if housing is "Other"
     const housingOther = document.querySelector('input[name="house_other"]')?.value || "";
     const fullHousing = (housing === "Other" && housingOther) ? `${housing} (${housingOther})` : housing;
+    const q11OtherText = document.querySelector('input[name="q11_other"]')?.value || "";
+
 
     // Get checkbox values
     const bins = [...document.querySelectorAll('input[name="bins"]:checked')].map(cb => cb.value);
@@ -399,10 +439,15 @@ function submitQuestions(){
     const q16 = [...document.querySelectorAll('input[name="q16[]"]:checked')].map(cb => cb.value);
     const q18 = [...document.querySelectorAll('input[name="q18[]"]:checked')].map(cb => cb.value);
 
+    // If "Other" is selected and user typed something, replace "Other" with custom input
+    const fullQ11 = q11.includes("Other") && q11OtherText
+    ? q11.map(value => value === "Other" ? `Other (${q11OtherText})` : value)
+    : q11;
+
     // Get confidence slider values
     const confidence = {
         plastic: document.getElementById("plasticConfidence").value,
-        glass: document.getElementById("glassConfidence").value,
+        glass: document.getElementById( "glassConfidence").value,
         metal: document.getElementById("metalConfidence").value,
         softPlastic: document.getElementById("softPlasticConfidence").value,
         eWaste: document.getElementById("eWasteConfidence").value,
@@ -424,7 +469,7 @@ function submitQuestions(){
         frequency,
         recyclingActions: q7,
         confidenceLevels: confidence,
-        recyclingConcerns: q11,
+        recyclingConcerns: fullQ11,
         trustScale,
         motivation: q16,
         sustainabilityHabits: q18

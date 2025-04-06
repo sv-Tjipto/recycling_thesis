@@ -242,47 +242,95 @@ app.post("/save-sorting", (req, res) => {
 
 app.post("/submit-survey", (req, res) =>{
     try{
-        const participantID = req.cookies?.participantID || "P" + Math.floor(Math.random() * 100000); // fallback
+        const participantID = req.cookies?.participantID || null; // fallback
+        const timestamp = new Date().toISOString();
         const {
             gender, age, housing, binAccess, knowledge, frequency,
             recyclingActions, confidenceLevels, recyclingConcerns,
             trustScale, motivation, sustainabilityHabits
         } = req.body;
 
-    // Format into one CSV line
-    const row = [
-        participantID,
-        gender,
-        age,
-        `"${housing}"`,
-        `"${binAccess.join("; ")}"`,
-        knowledge,
-        frequency,
-        `"${recyclingActions.join("; ")}"`,
-        confidenceLevels.plastic,
-        confidenceLevels.glass,
-        confidenceLevels.metal,
-        confidenceLevels.softPlastic,
-        confidenceLevels.eWaste,
-        `"${recyclingConcerns.join("; ")}"`,
-        trustScale,
-        `"${motivation.join("; ")}"`,
-        `"${sustainabilityHabits.join("; ")}"`
-        ];
-  
-        // Append to file
-        fs.appendFile(SURVEY_CSV, row.join(",") + "\n", (err) => {
-        if (err) {
-            console.error("Error writing survey:", err);
-            return res.status(500).json({ error: "Failed to save survey." });
+
+        if (!participantID) {
+            return res.status(400).json({ error: "Missing participant ID for Questions table." });
+          }
+
+
+          const sql = `
+          INSERT INTO survey_responses (
+            participant_id, timestamp, gender, age, housing, bin_access,
+            knowledge, frequency, recycling_actions,
+            confidence_plastic, confidence_glass, confidence_metal,
+            confidence_soft_plastic, confidence_e_waste,
+            recycling_concerns, trust_scale, motivations, sustainability_habits
+          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        `;
+        db.run(sql, [
+            participantID,
+            timestamp,
+            gender,
+            age,
+            housing,
+            binAccess.join("; "),
+            knowledge,
+            frequency,
+            recyclingActions.join("; "),
+            confidenceLevels.plastic,
+            confidenceLevels.glass,
+            confidenceLevels.metal,
+            confidenceLevels.softPlastic,
+            confidenceLevels.eWaste,
+            recyclingConcerns.join("; "),
+            trustScale,
+            motivation.join("; "),
+            sustainabilityHabits.join("; ")
+          ], (err) => {
+            if (err) {
+              console.error("Error inserting survey response:", err);
+              return res.status(500).json({ error: "Failed to save survey." });
+            }
+            console.log(`Survey stored for participant ${participantID}`);
+            res.json({ message: "Survey saved successfully!" });
+          });
+        } catch (error) {
+            console.error("Survey route error:", error);
+            res.status(500).json({ error: "Server error saving survey." });
         }
-        console.log(`Survey saved for ${participantID}`);
-        res.json({ message: "Survey saved successfully!" });
-        });
-    } catch (error) {
-        console.error("Survey route error:", error);
-        res.status(500).json({ error: "Server error saving survey." });
-    }
+
+    // Format into one CSV line
+    // const row = [
+    //     participantID,
+    //     gender,
+    //     age,
+    //     `"${housing}"`,
+    //     `"${binAccess.join("; ")}"`,
+    //     knowledge,
+    //     frequency,
+    //     `"${recyclingActions.join("; ")}"`,
+    //     confidenceLevels.plastic,
+    //     confidenceLevels.glass,
+    //     confidenceLevels.metal,
+    //     confidenceLevels.softPlastic,
+    //     confidenceLevels.eWaste,
+    //     `"${recyclingConcerns.join("; ")}"`,
+    //     trustScale,
+    //     `"${motivation.join("; ")}"`,
+    //     `"${sustainabilityHabits.join("; ")}"`
+    //     ];
+  
+    //     // Append to file
+    //     fs.appendFile(SURVEY_CSV, row.join(",") + "\n", (err) => {
+    //     if (err) {
+    //         console.error("Error writing survey:", err);
+    //         return res.status(500).json({ error: "Failed to save survey." });
+    //     }
+    //     console.log(`Survey saved for ${participantID}`);
+    //     res.json({ message: "Survey saved successfully!" });
+    //     });
+    // } catch (error) {
+    //     console.error("Survey route error:", error);
+    //     res.status(500).json({ error: "Server error saving survey." });
+    // }
 
 });
 

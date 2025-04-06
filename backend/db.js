@@ -37,12 +37,39 @@ db.serialize(() => {
     CREATE UNIQUE INDEX IF NOT EXISTS idx_participant_item
     ON dustbin_picks(participant_id, item_id, round)
   `);
-
+  
 
   // db.run(`CREATE TABLE IF NOT EXISTS question_results (
   //   id INTEGER PRIMARY KEY AUTOINCREMENT,
   //   participant_id TEXT,
   //   )`);
+
+  
+// Create survey responses table
+
+  db.run(`CREATE TABLE IF NOT EXISTS survey_responses (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    participant_id TEXT,
+    timestamp TEXT,
+    gender TEXT,
+    age INTEGER,
+    housing TEXT,
+    bin_access TEXT, -- stored as a CSV string
+    knowledge INTEGER,
+    frequency INTEGER,
+    recycling_actions TEXT, -- stored as CSV
+    confidence_plastic INTEGER,
+    confidence_glass INTEGER,
+    confidence_metal INTEGER,
+    confidence_soft_plastic INTEGER,
+    confidence_e_waste INTEGER,
+    recycling_concerns TEXT,
+    trust_scale INTEGER,
+    motivations TEXT,
+    sustainability_habits TEXT,
+    FOREIGN KEY (participant_id) REFERENCES particulars_start(participant_id)
+  )`);
+  
 });
 
 

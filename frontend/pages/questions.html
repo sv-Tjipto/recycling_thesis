@@ -9,7 +9,7 @@
         <!-- Learn More: https://formbold.com -->
         <div class="formbold-form-wrapper">
           <img  class="responsive-image" src="../assets/theme/recycling_theme.webp">
-          <form action="https://formbold.com/s/FORM_ID" method="POST">
+          <form id="question-form" onsubmit="submitQuestions(event)">
             
             <!-- Gender Identity -->
             <div class="formbold-input-radio-wrapper">
@@ -60,7 +60,7 @@
               <div class="formbold-radio-flex">
                 <div class="formbold-radio-group">
                   <label class="formbold-radio-label" for="housing-apartment">
-                    <input class="formbold-input-radio" type="radio" name="housing" id="housing-apartment" value="Apartment" />
+                    <input class="formbold-input-radio" type="radio" name="housing" id="housing-apartment" value="Apartment" onchange="handleHousingChange()" />
                     Apartment/unit
                     <span class="formbold-radio-checkmark"></span>
                   </label>
@@ -68,7 +68,7 @@
             
                 <div class="formbold-radio-group">
                   <label class="formbold-radio-label" for="housing-townhouse">
-                    <input class="formbold-input-radio" type="radio" name="housing" id="housing-townhouse" value="Townhouse" />
+                    <input class="formbold-input-radio" type="radio" name="housing" id="housing-townhouse" value="Townhouse" onchange="handleHousingChange()" />
                     Townhouse
                     <span class="formbold-radio-checkmark"></span>
                   </label>
@@ -76,7 +76,7 @@
             
                 <div class="formbold-radio-group">
                   <label class="formbold-radio-label" for="housing-detached">
-                    <input class="formbold-input-radio" type="radio" name="housing" id="housing-detached" value="Detached" />
+                    <input class="formbold-input-radio" type="radio" name="housing" id="housing-detached" value="Detached" onchange="handleHousingChange()" />
                     Detached house
                     <span class="formbold-radio-checkmark"></span>
                   </label>
@@ -84,11 +84,11 @@
             
                 <div class="formbold-radio-group">
                   <label class="formbold-radio-label" for="housing-other">
-                    <input class="formbold-input-radio" type="radio" name="housing" id="housing-other" value="Other" />
+                    <input class="formbold-input-radio" type="radio" name="housing" id="housing-other" value="Other" onchange="handleHousingChange()" />
                     Other 
                     <span class="formbold-radio-checkmark"></span>
                   </label>
-                  <input type="text" name="house_other" placeholder="Please specify" />
+                  <input type="text" id="house_other" name="house_other" placeholder="Please specify" disabled/>
                 </div>
               </div>
             </div>
@@ -156,13 +156,13 @@
             </div>
 
             <div class="formbold-input-group">
-              <label for="recycle_home" class="formbold-form-label">How often do you recycle at home?<br>(1 = Never, 5 = Always)
+              <label for="recycling-home" class="formbold-form-label">How often do you recycle at home?<br>(1 = Never, 5 = Always)
               </label>
               <input
                 type="number"
-                name="recycling-knowledge"
-                id="recycling-knowledge"
-                placeholder="Enter your knowledge"
+                name="recycling-home"
+                id="recycling-home"
+                placeholder="Enter the frequency"
                 class="formbold-form-input"
                 min="1" 
                 max="5"
@@ -274,11 +274,11 @@
             
                 <div class="formbold-radio-group">
                   <label class="formbold-radio-label">
-                    <input type="checkbox" name="q11[]" value="Other" class="formbold-input-radio" />
+                    <input type="checkbox" id="q11-other" name="q11[]" value="Other" class="formbold-input-radio" onchange="toggleOtherText('q11-other', 'q11_other')" />
                     Other
                     <span class="formbold-radio-checkmark"></span>
                   </label>
-                  <input type="text" name="q11_other" placeholder="Please specify" />
+                  <input type="text" id="q11_other" name="q11_other" placeholder="Please specify" disabled />
                 </div>
               </div>
             </div>
@@ -311,11 +311,11 @@
               </div>
             </div>
       
-            <button class="formbold-btn" onclick="submitQuestions()">Submit</button>
+            <button type="submit" class="formbold-btn" >Submit</button>
           </form>
         </div>
       </div>
-      <script src="/js/scripter.js"> </script>
+      <script src="/js/scripter.js"></script>
 </body>
 <style>
   
@@ -473,6 +473,14 @@ body {
 }
 .formbold-btn:hover {
     box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+}
+input[disabled] {
+  pointer-events: none;
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 </style>
 
