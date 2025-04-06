@@ -94,47 +94,47 @@
             </div>
 
             <!-- Bin Access (Checkboxes) -->
-            <div class="formbold-input-radio-wrapper">
+            <div class="formbold-input-radio-wrapper" id="bin-wrapper">
               <label class="formbold-form-label">Do you have access to separate bins for the following at home? (Select all that apply)</label>
               <div class="formbold-radio-flex">
                 <div class="formbold-radio-group">
-                  <label class="formbold-radio-label" for="bin-general">
-                    <input type="checkbox" name="bins" id="bin-general" value="General waste" />
+                  <label class="formbold-radio-label" for="bins">
+                    <input type="checkbox" name="bins" id="bins" value="General waste" />
                     General waste
                   </label>
                 </div>
             
                 <div class="formbold-radio-group">
-                  <label class="formbold-radio-label" for="bin-mixed">
-                    <input type="checkbox" name="bins" id="bin-mixed" value="Mixed recycling" />
+                  <label class="formbold-radio-label" for="bins">
+                    <input type="checkbox" name="bins" id="bins" value="Mixed recycling" />
                     Mixed recycling (glass, plastic, paper)
                   </label>
                 </div>
             
                 <div class="formbold-radio-group">
-                  <label class="formbold-radio-label" for="bin-paper">
-                    <input type="checkbox" name="bins" id="bin-paper" value="Paper & cardboard" />
+                  <label class="formbold-radio-label" for="bins">
+                    <input type="checkbox" name="bins" id="bins" value="Paper & cardboard" />
                     Paper & cardboard
                   </label>
                 </div>
             
                 <div class="formbold-radio-group">
-                  <label class="formbold-radio-label" for="bin-fogo">
-                    <input type="checkbox" name="bins" id="bin-fogo" value="FOGO" />
+                  <label class="formbold-radio-label" for="bins">
+                    <input type="checkbox" name="bins" id="bins" value="FOGO" />
                     Food & garden organics (FOGO)
                   </label>
                 </div>
             
                 <div class="formbold-radio-group">
-                  <label class="formbold-radio-label" for="bin-glass">
-                    <input type="checkbox" name="bins" id="bin-glass" value="Glass" />
+                  <label class="formbold-radio-label" for="bins">
+                    <input type="checkbox" name="bins" id="bins" value="Glass" />
                     Glass
                   </label>
                 </div>
             
                 <div class="formbold-radio-group">
-                  <label class="formbold-radio-label" for="bin-ewaste">
-                    <input type="checkbox" name="bins" id="bin-ewaste" value="E-waste" />
+                  <label class="formbold-radio-label" for="bins">
+                    <input type="checkbox" name="bins" id="bins" value="E-waste" />
                     E-waste
                   </label>
                 </div>
@@ -288,7 +288,7 @@
               <input type="number" id="q12" name="trustScale" min="1" max="100" step="1" />
             </div>
             
-            <div class="formbold-input-radio-wrapper">
+            <div class="formbold-input-radio-wrapper" id="q16-wrapper">
               <label class="formbold-form-label">Which of the following would make you recycle more? (Select all that apply)</label>
               <div class="formbold-radio-flex">
                 <div class="formbold-radio-group"><label class="formbold-radio-label"><input type="checkbox" name="q16[]" value="Better access" class="formbold-input-radio" /> Better access to bins <span class="formbold-radio-checkmark"></span></label></div>
@@ -300,7 +300,7 @@
               </div>
             </div>
             
-            <div class="formbold-input-radio-wrapper">
+            <div class="formbold-input-radio-wrapper" id="q18-wrapper">
               <label class="formbold-form-label">Do you currently engage in any of the following sustainable practices? (Select all that apply)</label>
               <div class="formbold-radio-flex">
                 <div class="formbold-radio-group"><label class="formbold-radio-label"><input type="checkbox" name="q18[]" value="Repair items" class="formbold-input-radio" /> Repairing items <span class="formbold-radio-checkmark"></span></label></div>
@@ -482,6 +482,12 @@ input[disabled] {
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
 }
+.highlight-error {
+  border: 2px solid red !important;
+  padding: 10px;
+  border-radius: 5px;
+}
+
 </style>
 
 
