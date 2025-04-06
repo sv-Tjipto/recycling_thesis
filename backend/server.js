@@ -264,6 +264,24 @@ app.post("/submit-survey", (req, res) =>{
             confidence_soft_plastic, confidence_e_waste,
             recycling_concerns, trust_scale, motivations, sustainability_habits
           ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+           ON CONFLICT(participant_id) DO UPDATE SET
+            timestamp = excluded.timestamp,
+            gender = excluded.gender,
+            age = excluded.age,
+            housing = excluded.housing,
+            bin_access = excluded.bin_access,
+            knowledge = excluded.knowledge,
+            frequency = excluded.frequency,
+            recycling_actions = excluded.recycling_actions,
+            confidence_plastic = excluded.confidence_plastic,
+            confidence_glass = excluded.confidence_glass,
+            confidence_metal = excluded.confidence_metal,
+            confidence_soft_plastic = excluded.confidence_soft_plastic,
+            confidence_e_waste = excluded.confidence_e_waste,
+            recycling_concerns = excluded.recycling_concerns,
+            trust_scale = excluded.trust_scale,
+            motivations = excluded.motivations,
+            sustainability_habits = excluded.sustainability_habits
         `;
         db.run(sql, [
             participantID,
