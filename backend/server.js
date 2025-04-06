@@ -60,14 +60,9 @@ app.get("/pages/:page", (req, res) => {
 
 
 // Store participant details and assign a unique ID
-app.post("/submit-form", (req, res) => {
+app.post("/submit-form", (_req, res) => {
     try {
-        const {knowledge, frequency } = req.body;
-
-        if (!knowledge || !frequency) {
-            return res.status(400).json({ error: "All fields are required." });
-        }
-
+        
         //Fix: Check if participant ID exists in cookies
         // let participantID = req.cookies?.participantID || "P" + Math.floor(Math.random() * 100000);
         let participantID = "P" + Math.floor(Math.random() * 100000);
@@ -79,7 +74,6 @@ app.post("/submit-form", (req, res) => {
         // Generate Timestamp
         let timestamp = new Date().toISOString(); // e.g., "2024-03-19T14:30:00.000Z"
 
-        const newData = `${participantID},${timestamp},${knowledge},${frequency}\n`;
 
         // SQL ----------------------------------------------------------------
 
@@ -100,18 +94,9 @@ app.post("/submit-form", (req, res) => {
             }
 
             console.log(`Saved initial details for ${participantID} at ${timestamp} into Database`);
-        });
-        // ------------------------------------------------------------------
-
-
-        fs.appendFile(CSV_FILE, newData, err => {
-            if (err) {
-                console.error("Error writing to CSV:", err);
-                return res.status(500).json({ error: "Failed to save participant data" });
-            }
-            console.log(`Participant ${participantID} saved at ${timestamp}`);
             res.json({ redirectUrl: "/pages/consent.html", participantID });
         });
+        // ------------------------------------------------------------------
 
     } catch (error) {
         console.error("Server error:", error);

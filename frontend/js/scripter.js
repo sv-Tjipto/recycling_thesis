@@ -101,34 +101,17 @@ const stimuliPairs = [
     { id: 100, item: "Batteries", correctBin: "red" }
 ];
   
-// function startTask() {
-//     totalParticipants++;
-//     document.getElementById("survey-section").style.display = "none";
-//     document.getElementById("task-section").style.display = "block";
-//     loadStimulus();
-// }
 
 // Participants Details
 function startTask() {
-    // let name = document.getElementById("participant-name").value;
-    let knowledge = document.getElementById("recycling-knowledge").value;
-    let frequency = document.getElementById("frequency").value;
+    
 
-    // Check if all fields are filled
-    if (!knowledge || !frequency) {
-        alert("Please fill in all fields before proceeding.");
-        return;
-    }
-
-
-    let formData = {knowledge,frequency};
+    
 
     fetch("http://localhost:3000/submit-form", {
         method: "POST",
         body: JSON.stringify({
-            // name: document.getElementById("participant-name").value,
-            knowledge: document.getElementById("recycling-knowledge").value,
-            frequency: document.getElementById("frequency").value
+            // Redundent
         }),
         headers: {
             "Content-Type": "application/json",  // Ensure JSON format
@@ -379,7 +362,6 @@ function stopTimer(event) {
     console.log(`Time taken: ${timeTaken} seconds`);
 }
 
-console.log(document.getElementById("q11_other").disabled); // should be true
 
 function toggleOtherText(checkboxId, inputId) {
     const checkbox = document.getElementById(checkboxId);
