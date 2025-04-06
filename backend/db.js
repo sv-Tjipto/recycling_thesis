@@ -49,7 +49,7 @@ db.serialize(() => {
 
   db.run(`CREATE TABLE IF NOT EXISTS survey_responses (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    participant_id TEXT,
+    participant_id TEXT UNIQUE,
     timestamp TEXT,
     gender TEXT,
     age INTEGER,
