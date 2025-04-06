@@ -173,7 +173,7 @@ function submitConsent() {
         console.log("Consent submitted:", data);
         // Redirect after successful submission
         // window.location.href = "/pages/sortingTask.html";
-        window.location.href = "/pages/questions.html"; // Change this temporary
+        window.location.href = "/pages/sortingTask.html"; // Change this temporary
 
     })
     .catch(error => console.error("Error submitting consent:", error));
@@ -454,10 +454,44 @@ function submitQuestions(event){
     };
 
     // Basic validation
-    if (!gender || !knowledge || !frequency || !age || !fullHousing) {
+    if (!gender || !knowledge || !frequency || !age || !fullHousing || !trustScale) {
         alert("Please fill in all required fields.");
         return;
     }
+
+    // Housing Others is selected
+    const houseOtherChecked = document.getElementById("housing-other")?.checked;
+    const houseOtherText = document.getElementById("house_other")?.value || "";
+    if (houseOtherChecked && houseOtherText.trim() === "") {
+        alert("Please specify your 'Other' house you live in.");
+        return;
+    }
+
+    // Checkbox group: recycleMore
+    const binsvalid = isCheckboxGroupValid("bins", "bin-wrapper");
+    const q16Valid = isCheckboxGroupValid("q16[]", "q16-wrapper");
+    const q18Valid = isCheckboxGroupValid("q18[]", "q18-wrapper");
+
+    if (!binsvalid || !q16Valid || !q18Valid) {
+    alert("Please fill in all required questions.");
+    return; // Stop submission
+    }
+
+    // Checkbox group: recyclingActions
+    const recyclingActions = [...document.querySelectorAll('input[name="q7[]"]:checked')];
+    if (recyclingActions.length === 0) {
+        alert("Please select at least one recycling action.");
+        return;
+    }
+
+    // "Other" checkbox validation for q11
+    const otherChecked = document.getElementById("q11-other")?.checked;
+    const otherText = document.getElementById("q11_other")?.value || "";
+    if (otherChecked && otherText.trim() === "") {
+        alert("Please specify your 'Other' concern.");
+        return;
+    }
+
 
     // Compile data
     const formData = {
@@ -489,10 +523,26 @@ function submitQuestions(event){
     .then(data => {
         alert("Thank you for completing the final survey!");
         // Optionally redirect
-        // window.location.href = "/pages/thankyou.html";
+        window.location.href = "/pages/thankyou.html";
     })
     .catch(err => {
         console.error("Submission error:", err);
         alert("There was an error submitting the form.");
     });
 }
+
+function isCheckboxGroupValid(groupName, wrapperId) {
+    const checkboxes = document.querySelectorAll(`input[name="${groupName}"]:checked`);
+    const wrapper = document.getElementById(wrapperId);
+  
+    if (checkboxes.length === 0) {
+      wrapper.style.border = "2px solid red";
+      wrapper.classList.add("highlight-error"); // if invalid
+      return false;
+    } else {
+      wrapper.style.border = "none"; // Reset if valid
+      wrapper.classList.remove("highlight-error"); // if valid
+      return true;
+    }
+}
+  
