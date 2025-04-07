@@ -1,0 +1,1 @@
+I NEED this folder to exist in order for my SQLite to work which in turn makes my backend work, which in turn makes my frontend work, which in turn makes this whole damn thing work.
