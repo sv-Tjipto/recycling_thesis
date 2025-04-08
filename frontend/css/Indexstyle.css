@@ -1,0 +1,127 @@
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center; /* horizontal center */
+    align-items: center;     /* vertical center */
+    background: #f0f0f0;
+}
+.bin-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 50px;
+}
+.bin {
+    width: 200px;
+    height: 300px;
+    border: 5px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
+}
+#yellow-bin {
+    background-image: url('./bins/yellow_bin.png');
+    border-color: yellow;
+}
+#red-bin {
+    background-image: url('./bins/red_bin.png');
+    border-color: red;
+}
+.drag-item {
+    width: 150px;
+    cursor: grab;
+}
+
+
+#stimulus-container {
+    text-align: center;
+    margin: 20px;
+}
+
+.drag-item {
+    width: 150px;
+    cursor: grab;
+}
+
+#bins-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.bin {
+    width: 200px;
+    height: 200px;
+    border: 2px dashed black;
+    text-align: center;
+    line-height: 200px;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 20px;
+    padding: 10px;
+    user-select: none; /* Prevent selection */
+}
+
+
+.uq-color {
+    width: 50vw;
+    height: 80vh; max-height: 400px; /* 👈 Responsive height based on window */
+
+    font-family: 'Raleway', sans-serif;
+    font-weight: 10; /* light */
+
+    background: linear-gradient(to right, #512a8a, #8f2b8a); /* adjust as needed */
+    color: white; /* optional for contrast */
+    
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+
+}
+
+.uq-text strong {
+    font-weight: 700;
+    font: optional;
+    /* font-size: 4vw; */
+    font-size: clamp(16px, 4vw, 50px);
+  }
+
+.uq-text {
+    font-size: clamp(16px, 2vw, 32px);
+    padding: 10px;
+    /* font-size: 2vw; */
+    font-weight: 300;
+    margin: 0;
+}
+
+.uq-button {
+    background-color: #1e73be; /* blue button */
+    color: white;              /* white text */
+    padding: 12px 24px;        /* space inside */
+    border: none;              /* no default border */
+    border-radius: 5px;        /* rounded corners */
+    font-size: 16px;
+    font-family: 'Raleway', sans-serif;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    margin-top: 10%;
+  }
+  
+  .uq-button:hover {
+    background-color: #1663a3; /* slightly darker on hover */
+  }

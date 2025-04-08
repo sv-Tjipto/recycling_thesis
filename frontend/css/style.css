@@ -65,3 +65,10 @@ body {
 }
 
 
+.uq-color {
+    background: linear-gradient(to right, #512a8a, #8f2b8a); /* adjust as needed */
+    color: white; /* optional for contrast */
+    padding: 20px;
+    border-radius: 10px;
+}
+  
