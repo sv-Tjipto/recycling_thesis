@@ -120,8 +120,8 @@ body {
     text-align: center;
     transition: background-color 0.3s ease;
     margin-top: 10%;
-  }
+}
   
-  .uq-button:hover {
+.uq-button:hover {
     background-color: #1663a3; /* slightly darker on hover */
-  }
+}

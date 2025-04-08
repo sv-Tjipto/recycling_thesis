@@ -235,6 +235,7 @@ function loadNextStimulus() {
             currentStimulusIndex = 0;
             swapBinPositions();
             loadNextStimulus(); // Starts next round
+            shuffleArray(stimuliPairs); //Shuffle again
         } else {
             alert("Experiment complete! Data saved.");
             window.location.href = "/pages/questions.html";

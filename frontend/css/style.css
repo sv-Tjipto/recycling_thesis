@@ -10,11 +10,23 @@ body {
     width:100%;
     display: flex;
     flex-direction: column;
-    
 
 }
 
-
+.task-section {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+.stimu-head {
+    height:20vh;
+}
+.stimu-head h2 {
+    font-size:65px;
+}
 .bin-container {
     display: flex;
     justify-content: center;
@@ -23,8 +35,8 @@ body {
 }
 .bin {
     width: 200px;
-    height: 300px;
-    border: 5px solid black;
+    height: 200px;
+    border: 5px solid;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -33,7 +45,14 @@ body {
     cursor: pointer;
     background-size: cover;
     background-position: center;
+
+    text-align: center;
+    line-height: 200px;
+    margin: 0 20px;
+    padding: 10px;
+    user-select: none; /* Prevent selection */
 }
+
 #yellow-bin {
     background-image: url('./bins/yellow_bin.png');
     border-color: yellow;
@@ -63,20 +82,6 @@ body {
     justify-content: center;
     margin-top: 20px;
 }
-
-.bin {
-    width: 200px;
-    height: 200px;
-    border: 2px dashed black;
-    text-align: center;
-    line-height: 200px;
-    font-size: 18px;
-    font-weight: bold;
-    margin: 0 20px;
-    padding: 10px;
-    user-select: none; /* Prevent selection */
-}
-
 
 .uq-color {
     background: linear-gradient(to right, #512a8a, #8f2b8a); /* adjust as needed */
@@ -128,4 +133,16 @@ body {
     text-align: center;
     transition: background-color 0.3s ease;
     
-  }
+}
+
+.uq-button:hover {
+    background-color: #1663a3; /* slightly darker on hover */
+}
+
+.uq-color-text {
+    color: #511b6a;
+}
+
+.bin-text-header {
+    font-size: 3rem;
+}
