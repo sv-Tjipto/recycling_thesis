@@ -121,7 +121,6 @@ app.post("/save-sorting", (req, res) => {
             }
     
     
-    console.log("Lols balls")
     if (!req.body || typeof req.body !== "object") {
         return res.status(400).json({ error: "Invalid JSON format." });
     }
