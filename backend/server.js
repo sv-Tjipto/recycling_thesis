@@ -14,7 +14,11 @@ app.use(cors());
 app.use(bodyParser.json());  // Ensures JSON data is parsed
 app.use(cookieParser()); // Ensures the Cookie is parsed
 
-  
+//  Disable caching for all responses during development
+app.use((req, res, next) => {
+    res.set("Cache-Control", "no-store");
+    next();
+});
 
 // Serve frontend files from "frontend" folder
 app.use(express.static(path.join(__dirname, "..", "frontend")));
